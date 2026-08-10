@@ -1,239 +1,720 @@
 <!DOCTYPE html>
 <html lang="mn">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hello, Jolieve!</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --lavender: #F5EEFF;
-    --coral: #FF6F91;
-    --sun: #FFD166;
-    --mint: #06D6A0;
-    --plum: #2E1A47;
-    --plum-soft: #6E5A85;
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    min-height: 100vh;
-    background: var(--lavender);
-    font-family: 'Nunito', sans-serif;
-    color: var(--plum);
-    overflow-x: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem 1rem;
-    position: relative;
-  }
-  .floaty {
-    position: fixed;
-    font-size: 34px;
-    opacity: 0.5;
-    animation: drift linear infinite;
-    pointer-events: none;
-    user-select: none;
-  }
-  @keyframes drift {
-    from { transform: translateY(110vh) rotate(0deg); }
-    to { transform: translateY(-15vh) rotate(360deg); }
-  }
-  .card {
-    position: relative;
-    z-index: 2;
-    max-width: 560px;
-    width: 100%;
-    text-align: center;
-    background: #FFFFFF;
-    border-radius: 28px;
-    padding: 3rem 2.25rem 2.5rem;
-    box-shadow: 0 24px 60px rgba(46, 26, 71, 0.12);
-  }
-  .eyebrow {
-    display: inline-block;
-    font-family: 'Nunito', sans-serif;
-    font-weight: 700;
-    font-size: 13px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--coral);
-    background: rgba(255, 111, 145, 0.12);
-    padding: 6px 16px;
-    border-radius: 999px;
-    margin-bottom: 1.25rem;
-  }
-  h1 {
-    font-family: 'Baloo 2', sans-serif;
-    font-weight: 800;
-    font-size: clamp(2.4rem, 8vw, 3.6rem);
-    line-height: 1.05;
-    margin: 0 0 0.75rem;
-    color: var(--plum);
-  }
-  h1 span {
-    color: var(--coral);
-  }
-  .sub {
-    font-size: 17px;
-    color: var(--plum-soft);
-    line-height: 1.6;
-    margin: 0 0 2rem;
-  }
-  .btn {
-    font-family: 'Baloo 2', sans-serif;
-    font-weight: 700;
-    font-size: 18px;
-    color: #fff;
-    background: var(--coral);
-    border: none;
-    padding: 16px 36px;
-    border-radius: 999px;
-    cursor: pointer;
-    box-shadow: 0 10px 24px rgba(255, 111, 145, 0.35);
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
-  }
-  .btn:hover {
-    transform: translateY(-2px) scale(1.03);
-    box-shadow: 0 14px 30px rgba(255, 111, 145, 0.42);
-  }
-  .btn:active {
-    transform: translateY(0) scale(0.98);
-  }
-  .message-box {
-    margin-top: 1.75rem;
-    min-height: 64px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .message {
-    font-family: 'Baloo 2', sans-serif;
-    font-weight: 700;
-    font-size: 20px;
-    color: var(--plum);
-    background: var(--sun);
-    padding: 14px 22px;
-    border-radius: 18px;
-    animation: pop 0.35s ease;
-  }
-  @keyframes pop {
-    from { transform: scale(0.85); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
-  }
-  .counter {
-    margin-top: 1.25rem;
-    font-size: 13px;
-    color: var(--plum-soft);
-  }
-  .confetti-piece {
-    position: fixed;
-    top: -20px;
-    width: 10px;
-    height: 10px;
-    border-radius: 2px;
-    z-index: 3;
-    pointer-events: none;
-    animation: fall linear forwards;
-  }
-  @keyframes fall {
-    to { transform: translateY(110vh) rotate(540deg); opacity: 0.2; }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .floaty, .confetti-piece { animation: none; display: none; }
-    .btn:hover { transform: none; }
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Hello, Jolieve!</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito:wght@400;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+    :root {
+      --lavender: #F5EEFF;
+      --coral: #FF6F91;
+      --sun: #FFD166;
+      --mint: #06D6A0;
+      --plum: #2E1A47;
+      --plum-soft: #6E5A85;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--lavender);
+      font-family: 'Nunito', sans-serif;
+      color: var(--plum);
+      overflow-x: hidden;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 2rem 1rem;
+      position: relative;
+    }
+
+    /* Floating emojis */
+    .floaty {
+      position: fixed;
+      font-size: 34px;
+      opacity: 0.5;
+
+      animation: drift linear infinite;
+
+      pointer-events: none;
+      user-select: none;
+
+      z-index: 1;
+    }
+
+    @keyframes drift {
+      from {
+        transform: translateY(110vh) rotate(0deg);
+      }
+
+      to {
+        transform: translateY(-15vh) rotate(360deg);
+      }
+    }
+
+    /* Main card */
+    .card {
+      position: relative;
+      z-index: 2;
+
+      max-width: 560px;
+      width: 100%;
+
+      text-align: center;
+
+      background: #FFFFFF;
+
+      border-radius: 28px;
+
+      padding: 3rem 2.25rem 2.5rem;
+
+      box-shadow:
+        0 24px 60px rgba(46, 26, 71, 0.12);
+    }
+
+    /* Small title */
+    .eyebrow {
+      display: inline-block;
+
+      font-family: 'Nunito', sans-serif;
+
+      font-weight: 700;
+      font-size: 13px;
+
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+
+      color: var(--coral);
+
+      background: rgba(255, 111, 145, 0.12);
+
+      padding: 6px 16px;
+
+      border-radius: 999px;
+
+      margin-bottom: 1.25rem;
+    }
+
+    /* Main title */
+    h1 {
+      font-family: 'Baloo 2', sans-serif;
+
+      font-weight: 800;
+
+      font-size: clamp(2.4rem, 8vw, 3.6rem);
+
+      line-height: 1.05;
+
+      margin: 0 0 0.75rem;
+
+      color: var(--plum);
+    }
+
+    h1 span {
+      color: var(--coral);
+    }
+
+    /* Description */
+    .sub {
+      font-size: 17px;
+
+      color: var(--plum-soft);
+
+      line-height: 1.6;
+
+      margin: 0 0 2rem;
+    }
+
+    /* Button */
+    .btn {
+      font-family: 'Baloo 2', sans-serif;
+
+      font-weight: 700;
+
+      font-size: 18px;
+
+      color: #fff;
+
+      background: var(--coral);
+
+      border: none;
+
+      padding: 16px 36px;
+
+      border-radius: 999px;
+
+      cursor: pointer;
+
+      box-shadow:
+        0 10px 24px rgba(255, 111, 145, 0.35);
+
+      transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px) scale(1.03);
+
+      box-shadow:
+        0 14px 30px rgba(255, 111, 145, 0.42);
+    }
+
+    .btn:active {
+      transform: translateY(0) scale(0.98);
+    }
+
+    /* Message area */
+    .message-box {
+      margin-top: 1.75rem;
+
+      min-height: 64px;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+    }
+
+    /* Message */
+    .message {
+      font-family: 'Baloo 2', sans-serif;
+
+      font-weight: 700;
+
+      font-size: 20px;
+
+      color: var(--plum);
+
+      background: var(--sun);
+
+      padding: 14px 22px;
+
+      border-radius: 18px;
+
+      animation: pop 0.35s ease;
+
+      max-width: 100%;
+    }
+
+    @keyframes pop {
+      from {
+        transform: scale(0.85);
+        opacity: 0;
+      }
+
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    /* Counter */
+    .counter {
+      margin-top: 1.25rem;
+
+      font-size: 13px;
+
+      color: var(--plum-soft);
+    }
+
+    /* Confetti */
+    .confetti-piece {
+      position: fixed;
+
+      top: -20px;
+
+      width: 10px;
+      height: 10px;
+
+      border-radius: 2px;
+
+      z-index: 3;
+
+      pointer-events: none;
+
+      animation: fall linear forwards;
+    }
+
+    @keyframes fall {
+      to {
+        transform:
+          translateY(110vh)
+          rotate(540deg);
+
+        opacity: 0.2;
+      }
+    }
+
+    /* 20th message effect */
+    .final-message {
+      animation:
+        pop 0.5s ease,
+        heartbeat 1.2s ease-in-out infinite;
+    }
+
+    @keyframes heartbeat {
+      0% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.05);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    /* Mobile */
+    @media (max-width: 600px) {
+
+      .card {
+        padding: 2.5rem 1.5rem 2rem;
+      }
+
+      h1 {
+        font-size: 2.7rem;
+      }
+
+      .sub {
+        font-size: 16px;
+      }
+
+      .message {
+        font-size: 18px;
+        padding: 13px 18px;
+      }
+
+      .btn {
+        font-size: 17px;
+        padding: 15px 32px;
+      }
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+
+      .floaty,
+      .confetti-piece {
+        animation: none;
+        display: none;
+      }
+
+      .btn:hover {
+        transform: none;
+      }
+
+      .final-message {
+        animation: none;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<div class="card">
-  <span class="eyebrow">Зорилгогүй жижиг хуудас</span>
-  <h1>Сайн уу, <span>Jolieve!</span></h1>
-  <p class="sub">Энэ хуудсанд ямар ч ач холбогдол алга. Гэхдээ товчийг дараад юу гарч ирэхийг үзэж болно.</p>
-  <button class="btn" id="surprise-btn">Дар л доо</button>
-  <div class="message-box" id="message-box"></div>
-  <p class="counter" id="counter"></p>
-</div>
+  <div class="card">
 
-<script>
-  const messages = [
-    "За... чи дарчихлаа 👀 Гэхдээ энэ бол эхлэл нь л байсан.",
-    "Хмм, чи буцаад гарахын оронд дахиад дарсан байна. Яагаад юм бол? 😏",
-    "Энд нэг жижиг нууц байгаа... гэхдээ одоо хэлэхгүй. Дахиад дар.",
-    "Чамд нэг зүйл хэлэх гэсэн юм... дараагийн даралт дээр хэлж магадгүй. 👀",
-    "За за, одоо сонирхож эхэлсэн биз дээ? Би ч бас мэдэж байсан. 😂",
-    "Энэ хуудас чамайг бага багаар нэг юм руу хөтлөөд байгаа гэдгийг анзаарсан уу? ✨",
-    "Дараагийнх нь арай сонин байж магадгүй... эсвэл бүр чамд зориулагдсан байж магадгүй. 💛",
-    "Чи одоо больж болно. Гэхдээ дараагийнх нь юу болохыг мэдэхгүй үлдэнэ шүү. 😌",
-    "Нэг юм хэлэх үү? Чи энэ товчийг бодсоноосоо олон удаа дарж байна. 😂",
-    "За, одооноос эхлээд мессежүүдийг сайн уншаарай. Жаахан юм өөрчлөгдөж эхэлнэ. 👀",
-    "Чи яг одоо инээмсэглэсэн бол би яллаа. 😌 Харин дараагийнхыг бас үз.",
-    "Эндээс цааш нэг жижигхэн clue өгье... 🔎 гэхдээ утгыг нь чи өөрөө олох ёстой.",
-    "Одоо чи зүгээр нэг товч дарахгүй байна. Чи хариу хайж байна. 😏",
-    "Хариу нь ойртож байна... гэхдээ жаахан тэвчээртэй бай.",
-    "Чи 15 хүрчихлээ. Одоо эндээс буцвал харамсах байх даа. 👀",
-    "За, одоо үнэхээр сонирхолтой хэсэг рүүгээ орж байна. ✨",
-    "Дараагийн хэдэн даралтанд анхааралтай байгаарай... нэг зүйл чамайг хүлээж байгаа. 💛",
-    "Бараг боллоо. Гэхдээ 'бараг' гэдэг нь яг одоо гэсэн үг биш шүү. 😏",
-    "Сүүлчийн нэг жижигхэн алхам үлдлээ... чи энд хүртэл ирчихсэн юм чинь одоо зогсох уу? 👀",
-    "Чи izuka.saku-гаас хөөрхөн юм байна шүү дээ."
-  ];
-  const colors = ['#FF6F91', '#FFD166', '#06D6A0', '#8E7CFF'];
-  const emojiFloats = ['✨', '🎈', '💛', '🌸', '⭐', '🎉'];
+    <span class="eyebrow">
+      Зорилгогүй жижиг хуудас
+    </span>
 
-  let clicks = 0;
-  const btn = document.getElementById('surprise-btn');
-  const box = document.getElementById('message-box');
-  const counter = document.getElementById('counter');
+    <h1>
+      Сайн уу,
+      <span>Jolieve!</span>
+    </h1>
 
-  function showMessage() {
-    clicks++;
-    let msg;
-    if (clicks === 20) {
-      msg = "Чи izuka.saku-гаас хөөрхөн юм байна шүү дээ.";
-    } else {
-      msg = messages[Math.floor(Math.random() * messages.length)];
+    <p class="sub">
+      Энэ хуудсанд ямар ч ач холбогдол алга.
+      Гэхдээ товчийг дараад юу гарч ирэхийг үзэж болно.
+    </p>
+
+    <button
+      class="btn"
+      id="surprise-btn"
+    >
+      Дар л доо
+    </button>
+
+    <div
+      class="message-box"
+      id="message-box"
+    ></div>
+
+    <p
+      class="counter"
+      id="counter"
+    ></p>
+
+  </div>
+
+
+  <script>
+
+    /*
+      ==================================================
+      1 - 20 ДАРАЛТЫН МЕССЕЖ
+      ==================================================
+    */
+
+    const messages = [
+
+      // 1
+      "За... чи үнэхээр дарчихлаа. 👀 Одоо буцаад гарах уу, эсвэл дараагийнхыг үзэх үү?",
+
+      // 2
+      "Хмм... чи дараагийнхыг сонголоо. Сониуч хүн байна шүү. 😂",
+
+      // 3
+      "За нэг нууц хэлье... энэ товчийг зүгээр нэг тавиагүй юм. 🤫",
+
+      // 4
+      "Гэхдээ нууцыг одоо хэлэхгүй ээ. Дараагийн даралтанд арай ойртоно. 😏",
+
+      // 5
+      "Чи одоо яг юу болох бол гэж бодож байгаа биз дээ? 👀",
+
+      // 6
+      "Үнэнийг хэлэхэд... би чамайг ийм олон удаа дарна гэж бодоогүй. 😂",
+
+      // 7
+      "За тэгвэл чи өөрөө сонгосон шүү. Одоо эндээс сонирхолтой болно. ✨",
+
+      // 8
+      "Нэг жижиг clue: энэ бүх даралт эцэстээ нэг зүйл рүү хүргэнэ. 🔎",
+
+      // 9
+      "Гэхдээ тэр зүйл яг юу вэ гэдгийг одоохондоо хэлэхгүй. Дараарай. 😌",
+
+      // 10
+      "Чи одоо 10 хүрчихлээ. Талд нь ирсэн гэсэн үг. 👀",
+
+      // 11
+      "Одоо больчихвол өмнөх 10 даралт чинь талаар болно шүү. 😂",
+
+      // 12
+      "Тийм болохоор... дахиад нэг даралт. Ердөө ганцхан. 😏",
+
+      // 13
+      "За, одоо энэ товч чамайг бага зэрэг хуурч байгаа байх. Гэхдээ хөгжилтэй байгаа биз дээ? 😂",
+
+      // 14
+      "Хариу нь улам ойртсоор байна... ⏳",
+
+      // 15
+      "15 хүрчихлээ. Одоо бол чи өөрөө ч мэдэлгүй энэ тоглоомд орчихсон. 😌",
+
+      // 16
+      "Дараагийн хэд дээр жаахан анхааралтай байгаарай. 👀",
+
+      // 17
+      "Яагаад гэвэл... төгсгөл нь чиний бодож байгаагаас өөр байж магадгүй. ✨",
+
+      // 18
+      "Бараг боллоо. Одоо буцвал хамгийн харамсалтай мөч болно шүү. 😂",
+
+      // 19
+      "За... хамгийн сүүлийн өмнөх даралт. Одоо нэг л зүйл үлдлээ. 💛",
+
+      // 20
+      "Чи izuka.saku-гаас хөөрхөн юм байна шүү дээ."
+
+    ];
+
+
+    /*
+      ==================================================
+      COLORS & FLOATING EMOJIS
+      ==================================================
+    */
+
+    const colors = [
+      '#FF6F91',
+      '#FFD166',
+      '#06D6A0',
+      '#8E7CFF'
+    ];
+
+    const emojiFloats = [
+      '✨',
+      '🎈',
+      '💛',
+      '🌸',
+      '⭐',
+      '🎉'
+    ];
+
+
+    /*
+      ==================================================
+      ELEMENTS
+      ==================================================
+    */
+
+    let clicks = 0;
+
+    const btn =
+      document.getElementById('surprise-btn');
+
+    const box =
+      document.getElementById('message-box');
+
+    const counter =
+      document.getElementById('counter');
+
+
+    /*
+      ==================================================
+      SHOW MESSAGE
+      ==================================================
+    */
+
+    function showMessage() {
+
+      clicks++;
+
+
+      /*
+        Мессежүүд яг дарааллаараа гарна.
+
+        1 дэх даралт  -> messages[0]
+        2 дахь даралт -> messages[1]
+        ...
+        20 дахь даралт -> messages[19]
+      */
+
+      const msg = messages[clicks - 1];
+
+
+      /*
+        Хэрэв 20 дахь даралт бол
+        тусгай final effect өгнө.
+      */
+
+      if (clicks === 20) {
+
+        box.innerHTML =
+          '<div class="message final-message">' +
+          msg +
+          '</div>';
+
+      } else {
+
+        box.innerHTML =
+          '<div class="message">' +
+          msg +
+          '</div>';
+
+      }
+
+
+      /*
+        Counter
+      */
+
+      counter.textContent =
+        clicks === 1
+          ? '1 удаа дарлаа'
+          : clicks + ' удаа дарлаа';
+
+
+      /*
+        Confetti
+      */
+
+      burstConfetti();
+
+
+      /*
+        20 дахь даралтанд илүү их confetti
+      */
+
+      if (clicks === 20) {
+
+        setTimeout(() => {
+          burstConfetti();
+        }, 250);
+
+        setTimeout(() => {
+          burstConfetti();
+        }, 600);
+
+      }
+
     }
-    box.innerHTML = '<div class="message">' + msg + '</div>';
-    counter.textContent = clicks === 1 ? '1 удаа дарлаа' : clicks + ' удаа дарлаа';
-    burstConfetti();
-  }
 
-  function burstConfetti() {
-    const count = 24;
-    for (let i = 0; i < count; i++) {
-      const piece = document.createElement('div');
-      piece.className = 'confetti-piece';
-      piece.style.left = Math.random() * 100 + 'vw';
-      piece.style.background = colors[Math.floor(Math.random() * colors.length)];
-      piece.style.animationDuration = (2.5 + Math.random() * 1.5) + 's';
-      piece.style.opacity = 0.8 + Math.random() * 0.2;
-      document.body.appendChild(piece);
-      setTimeout(() => piece.remove(), 4200);
+
+    /*
+      ==================================================
+      CONFETTI
+      ==================================================
+    */
+
+    function burstConfetti() {
+
+      const count =
+        clicks === 20 ? 60 : 24;
+
+
+      for (let i = 0; i < count; i++) {
+
+        const piece =
+          document.createElement('div');
+
+        piece.className =
+          'confetti-piece';
+
+
+        piece.style.left =
+          Math.random() * 100 + 'vw';
+
+
+        piece.style.background =
+          colors[
+            Math.floor(
+              Math.random() * colors.length
+            )
+          ];
+
+
+        piece.style.animationDuration =
+          (2.5 + Math.random() * 1.5) + 's';
+
+
+        piece.style.opacity =
+          0.8 + Math.random() * 0.2;
+
+
+        /*
+          20 дахь дээр арай том confetti
+        */
+
+        if (clicks === 20) {
+
+          const size =
+            8 + Math.random() * 8;
+
+          piece.style.width =
+            size + 'px';
+
+          piece.style.height =
+            size + 'px';
+
+        }
+
+
+        document.body.appendChild(piece);
+
+
+        setTimeout(() => {
+
+          piece.remove();
+
+        }, 4200);
+
+      }
+
     }
-  }
 
-  btn.addEventListener('click', showMessage);
 
-  function spawnFloaties() {
-    const el = document.createElement('div');
-    el.className = 'floaty';
-    el.textContent = emojiFloats[Math.floor(Math.random() * emojiFloats.length)];
-    el.style.left = Math.random() * 100 + 'vw';
-    el.style.animationDuration = (10 + Math.random() * 8) + 's';
-    document.body.appendChild(el);
-    setTimeout(() => el.remove(), 20000);
-  }
+    /*
+      ==================================================
+      BUTTON CLICK
+      ==================================================
+    */
 
-  for (let i = 0; i < 6; i++) {
-    setTimeout(spawnFloaties, i * 900);
-  }
-  setInterval(spawnFloaties, 2600);
-</script>
+    btn.addEventListener(
+      'click',
+      showMessage
+    );
+
+
+    /*
+      ==================================================
+      FLOATING EMOJIS
+      ==================================================
+    */
+
+    function spawnFloaties() {
+
+      const el =
+        document.createElement('div');
+
+      el.className =
+        'floaty';
+
+
+      el.textContent =
+        emojiFloats[
+          Math.floor(
+            Math.random() * emojiFloats.length
+          )
+        ];
+
+
+      el.style.left =
+        Math.random() * 100 + 'vw';
+
+
+      el.style.animationDuration =
+        (10 + Math.random() * 8) + 's';
+
+
+      document.body.appendChild(el);
+
+
+      setTimeout(() => {
+
+        el.remove();
+
+      }, 20000);
+
+    }
+
+
+    /*
+      Initial floating emojis
+    */
+
+    for (let i = 0; i < 6; i++) {
+
+      setTimeout(
+        spawnFloaties,
+        i * 900
+      );
+
+    }
+
+
+    /*
+      Continue spawning
+    */
+
+    setInterval(
+      spawnFloaties,
+      2600
+    );
+
+  </script>
 
 </body>
 </html>
